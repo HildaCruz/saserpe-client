@@ -11,12 +11,41 @@ function setupStocksEventSource() {
     var source = new EventSource('http://localhost:8080/suscribe-hilos?sessionID=C');
     source.addEventListener('bloqueo-hilos', function(e) {
          console.log(e.data);
+         var data = JSON.parse(e.data);
+         var is_blocked = data.bloqueo;
+
+         if(is_blocked === true){
+             //alert("bloqueo aHHH");
+             $("#btn_compra").disabled = true;
+             $("#btn_venta").disabled = true;
+         }
+         if(is_blocked === false){
+             //alert("desblokeo");
+             $("#btn_compra").disabled = false;
+             $("#btn_venta").disabled = false;
+         }
+
+        $("#response_messages").append(e.data);
     }, false);
     source.addEventListener('finalizacion-propuesta', function(e) {
-         console.log(e.data);
+        console.log(e.data);
+        var message = "";
+        var data = JSON.parse(e.data);
+        var is_winner = data.ganador;
+        if (is_winner === true){
+            message = "Felicidades, ganaste x acciones de la empresa x";
+        }
+        if (is_winner === true) {
+            message = "Lo sentimos, no ganaste x acciones de la empresa x :c";
+        }
+         $("#response_messages").append(message);
+         //mensajes
     }, false);
     source.addEventListener('actualizar-propuesta', function(e) {
          console.log(e.data);
+         $("#response_messages").append(e.data);
+         //mensajes
+         //reload page
     }, false);
 }
 function setupNewPropuestaEventSrouce() {
@@ -40,7 +69,6 @@ function getAcciones(){
             html_tr = html_tr.replace("{total}", entry['acciones_empr_total']);
             html_tr = html_tr.replace("{precio}",  entry['precio_accion_empr'] );
             $("#companies").append(html_tr);
-           
        });
         
        }
@@ -72,16 +100,23 @@ function stocks(action){
  var stocks = document.getElementById('stocks').value;
  var price_offer = document.getElementById('price_offer').value;
 
- if (action = 'b'){buyStocks(company, stocks, price_offer);}
- if (action = 's'){sellStocks(company,stocks,price_offer);}
+ if(company !== "" && stocks !== "" && price_offer !==""){
+     if (action = 'b'){buyStocks(company, stocks, price_offer);}
+     if (action = 's'){sellStocks(company,stocks,price_offer);}
+
+ }
+ else{
+     alert("Los campos no pueden esta vacíos");
+ }
+
 }
 
 function buyStocks(company,stocks,price_offer){
     var request = {
         RFC_usuario:"1111111111",
-        RFC_empresa: "1987654321",
-        precio_accion_prop: "2.5",
-        operacion_accion_prop: "1",
+        RFC_empresa: company,
+        precio_accion_prop: price_offer,
+        operacion_accion_prop: stocks,
         tipo_accion: "C"
     };
     alert(JSON.stringify(request));
@@ -92,7 +127,6 @@ function buyStocks(company,stocks,price_offer){
         success: function (response) {
             console.log(response);
             var message = JSON.parse(response);
-            alert(message);
         },
         error : function(error) {
             console.log(error);
@@ -103,9 +137,9 @@ function buyStocks(company,stocks,price_offer){
 function sellStocks(company,stocks,price_offer){
     var request = {
         RFC_usuario:"1111111111",
-        RFC_empresa: "1987654321",
-        precio_accion_prop: "2.5",
-        operacion_accion_prop: "1",
+        RFC_empresa: company,
+        precio_accion_prop: price_offer,
+        operacion_accion_prop: stocks,
         tipo_accion: "V"
     };
     alert(JSON.stringify(request));
@@ -116,7 +150,6 @@ function sellStocks(company,stocks,price_offer){
         success: function (response) {
             console.log(response);
             var message = JSON.parse(response);
-            alert(message);
         },
         error : function(error) {
             console.log(error);

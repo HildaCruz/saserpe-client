@@ -29,14 +29,15 @@
             <tbody id="portafolio"></tbody>
         </table>
     </div>
-
+    <br>
     <div>
-        <div id="response_messages" class="message"></div>
+        <div id="response_messages" class="message" style="color: blue"></div>
+        <br>
         <input id="company" placeholder="compañía">
         <input id="stocks" placeholder="número de acciones">
         <input id="price_offer" placeholder="precio propuesto">
-        <button class="btn-icon" onclick="stocks('b')">Compra</button>
-        <button class="btn-icon" onclick="stocks('s')">Venta</button>
+        <button id="btn_compra" class="btn-icon" onclick="stocks('b')">Compra</button>
+        <button id="btn_venta" class="btn-icon" onclick="stocks('s')">Venta</button>
     </div>
 </div>
 
