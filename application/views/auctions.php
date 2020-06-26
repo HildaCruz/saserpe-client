@@ -1,8 +1,10 @@
-<?php
-?>
+<script language="JavaScript" type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-3.5.1.min.js"></script>
+<script language="JavaScript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="<?php echo base_url();?>assets/js/auctions.js"></script>
 
 <div class="container">
     <div>
+        <?= $string ?>
         <table>
             <tr>
                 <th>Compañía</th>
@@ -11,21 +13,17 @@
                 <th>Disponibles</th>
                 <th>Valor</th>
             </tr>
-            <tr>
-                <td>Pannasoft</td>
-                <td>PANA120062020UAD</td>
-                <td>50</td>
-                <td>50</td>
-                <td>$10.50</td>
-            </tr>
+            <span id="companies"></span>
         </table>
     </div>
 
     <div>
-        <input placeholder="compañía">
-        <input placeholder="número de acciones">
-        <input placeholder="precio propuesto">
-        <button class="btn-icon">Compra</button>
-        <button class="btn-icon">Venta</button>
+        <div id="response_messages" class="message"></div>
+        <input id="company" placeholder="compañía">
+        <input id="stocks" placeholder="número de acciones">
+        <input id="price_offer" placeholder="precio propuesto">
+        <button class="btn-icon" onclick="stocks('b')">Compra</button>
+        <button class="btn-icon" onclick="stocks('s')">Venta</button>
     </div>
 </div>
+
