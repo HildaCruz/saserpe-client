@@ -7,11 +7,10 @@
         <?= $string ?>
         <table>
             <tr>
-                <th>Compañía</th>
                 <th>RFC</th>
-                <th>Totales</th>
-                <th>Disponibles</th>
-                <th>Valor</th>
+                <th>Acciones Totales</th>
+                <th>Acciones Disponibles</th>
+                <th>Valor por Accion</th>
             </tr>
             <span id="companies"></span>
         </table>
