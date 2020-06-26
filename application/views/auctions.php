@@ -12,7 +12,7 @@
                 <th>Acciones Disponibles</th>
                 <th>Valor por Accion</th>
             </tr>
-            <span id="companies"></span>
+            <tbody id="companies"></tbody>
         </table>
     </div>
 

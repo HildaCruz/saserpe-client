@@ -31,18 +31,18 @@ function getAcciones(){
        type: 'GET', dataType:'JSON',
        success: function (response) {
            var company = "";
+           $("#companies").html("");
+           var html_tr = "";
            response.forEach(function(entry) {
-
-               var table =
-                   "<tr><td>" + entry['rfc_empresa'] + "</td>"
-               +   "<td>" + entry['acciones_empr_disp'] + "</td>"
-               +   "<td>" + entry['acciones_empr_total'] + "</td>"
-               +   "<td>" + entry['precio_accion_empr'] + "</td></tr>";
-               company += (table);
-               console.log(entry);
-           });
-           $('#companies').innerHTML = company;
-
+            html_tr ="<tr><td>{rfc}</td><td>{acciones}</td><td>{total}</td><td>{precio}</td></tr><br>";
+            html_tr = html_tr.replace("{rfc}", entry['rfc_empresa']);
+            html_tr = html_tr.replace("{acciones}", entry['acciones_empr_disp']);
+            html_tr = html_tr.replace("{total}", entry['acciones_empr_total']);
+            html_tr = html_tr.replace("{precio}",  entry['precio_accion_empr'] );
+            $("#companies").append(html_tr);
+           
+       });
+        
        }
     });
 }
