@@ -27,6 +27,8 @@ $config['base_url'] = 'http://localhost/saserpe-client';
 
 $config['base_url_api'] = 'http://127.0.0.1/saserpe-api/';
 
+$config['base_url_local'] = 'http://localhost:8080/';
+
 /*
 |--------------------------------------------------------------------------
 | Index File
