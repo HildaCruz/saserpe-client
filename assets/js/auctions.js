@@ -46,6 +46,7 @@ function setupStocksEventSource() {
          $("#response_messages").append(e.data);
          //mensajes
          //reload page
+         location.reload();
     }, false);
 }
 function setupNewPropuestaEventSrouce() {
@@ -101,8 +102,11 @@ function stocks(action){
  var price_offer = document.getElementById('price_offer').value;
 
  if(company !== "" && stocks !== "" && price_offer !==""){
-     if (action = 'b'){buyStocks(company, stocks, price_offer);}
-     if (action = 's'){sellStocks(company,stocks,price_offer);}
+     if (action = 'b'){
+         buyStocks(company, stocks, price_offer);
+    } else if (action = 's'){
+        sellStocks(company,stocks,price_offer);
+    }
 
  }
  else{
