@@ -34,50 +34,55 @@ class Login extends CI_Controller {
 	}
 
 	public function login(){
+		
 		$data['menu'] = main_menu();
-		$curl = curl_init();
-		$datos = $this->input->post();
-		$nombre = $datos['usuario'];
-		$password = $datos['contrasena'];
-		$sessionID = random_string('alnum', 8);
+		
 
-		$request = '{
-			"RFC_usuario": "'.$nombre.'",
-			"password": "'.$password.'",
-			"session_id" : "'.$sessionID.'"
-		}';
-		curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/login-usuario');
-		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, ['content-type: application/json']);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-
-		$result = curl_exec($curl);
-		$err = curl_error($curl);
-
-		if($err) {
-			print_r($err);
-			$data['error'] = $err;
-
+		if($this->session->userdata('id_sesion')){
 			$this->load->view('cabecera');
-			$this->load->view('login', $data);
-		} else {
-			$response = json_decode($result, true);
-			if (!$response['login']){
-				$mensaje = $response['mensaje'];
-				$data['mensaje'] = $mensaje;
+			$this->load->view('auctions', $data);
+		} else{
+			$curl = curl_init();
+			$datos = $this->input->post();
+			$nombre = $datos['usuario'];
+			$password = $datos['contrasena'];
+			$sessionID = random_string('alnum', 8);
+
+			$request = '{
+				"RFC_usuario": "'.$nombre.'",
+				"password": "'.$password.'",
+				"session_id" : "'.$sessionID.'"
+			}';
+			curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/login-usuario');
+			curl_setopt($curl, CURLOPT_POST, true);
+			curl_setopt($curl, CURLOPT_HTTPHEADER, ['content-type: application/json']);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+	
+			$result = curl_exec($curl);
+			$err = curl_error($curl);
+	
+			if($err) {
+				print_r($err);
+				$data['error'] = $err;
+	
 				$this->load->view('cabecera');
 				$this->load->view('login', $data);
-			} else{
-				$this->session->set_userdata('rfc_usuario',$nombre);
-				$this->session->set_userdata('id_sesion',$sessionID);
-				$this->load->view('cabecera');
-				$this->load->view('auctions', $data);
+			} else {
+				$response = json_decode($result, true);
+				if (!$response['login']){
+					$mensaje = $response['mensaje'];
+					$data['mensaje'] = $mensaje;
+					$this->load->view('cabecera');
+					$this->load->view('login', $data);
+				} else{
+					$this->session->set_userdata('rfc_usuario',$nombre);
+					$this->session->set_userdata('id_sesion',$sessionID);
+					$this->load->view('cabecera');
+					$this->load->view('auctions', $data);
+				}
 			}
 		}
-		
-		
-		
 	}
 
 	public function logout(){

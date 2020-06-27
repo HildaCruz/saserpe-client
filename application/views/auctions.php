@@ -5,7 +5,7 @@
 <input style="display:none;" id="rfc" name = "rfc" value="<?= $this->session->userdata('rfc_usuario');?>">
     <div>
         <?php
-        echo "RFC Usuario ". $this->session->userdata('rfc_usuario');
+        echo "Sesion ID ". $this->session->userdata('id_sesion');
          ?>
         <h1>Acciones</h1>
         <table>
