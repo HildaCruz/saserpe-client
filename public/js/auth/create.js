@@ -14,7 +14,7 @@ function init() {
 }
 
 function validate_user() {
-	var url = 'http://localhost:8081/registro-usuario';
+	var url = 'http://localhost:8080/registro-usuario';
 	var form = document.getElementById('form_registro');
 
 	form.addEventListener('submit', function (event) {
@@ -37,7 +37,7 @@ function validate_user() {
 }
 
 function validate_company() {
-	var url = 'http://localhost:8081/registro-empresa';
+	var url = 'http://localhost:8080/registro-empresa';
 	var form = document.getElementById('form_company');
 
 	form.addEventListener('submit', function (event) {
@@ -80,6 +80,7 @@ function api(url, data) {
 			} else {
 				//Redireccionar
 				alert(data['mensaje']);
+				window.location.href = 'http://localhost/saserpe-client/';
 			}
 		});
 }

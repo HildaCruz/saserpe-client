@@ -9,8 +9,12 @@ class AuctionsController extends CI_Controller {
     }
     public function index()
     {
+        $this->load->library('session');
+        
+        
         //$data = array();
-        $data["string"] = "k";
+        
+        $data["string"] = "hola";
         $this->load->view('auctions', $data);
     }
 

@@ -1,11 +1,12 @@
 function init() {
 	$(document).ready(function() {
-		validate();
+		
+		//validate();
 	});
 }
 
 function validate() {
-	var url = 'http://localhost:8081/login-usuario';
+	var url = 'http://localhost:8080/login-usuario';
 	var form = document.getElementById('form_login');
 	var respuesta = document.getElementById('respuesta');
 
@@ -33,20 +34,11 @@ function api(url, data) {
 		.then(res => res.json())
 		.catch(error => console.error('Error:', error))
 		.then(response => {
-			if(response['code'] !== 200) {
+			if(response.code !== 200) {
 				alert(response['mensaje']);
+				alert(response);
 			} else {
-				localStorage.setItem('user', data);
-				if(data['RFC_usuario'] === 'RFCadmin99') {
-					//window.location = 'http://www.twitter.com';
-					alert("Ventana administrador");
-					console.log('Success:',data);
-				} else {
-					// Redireccionar a la pagina principal
-					alert(response['mensaje']);
-					//window.location = 'http://www.facebook.com';
-					//console.log('Success:',data);
-				}
+				
 			}
 		});
 }

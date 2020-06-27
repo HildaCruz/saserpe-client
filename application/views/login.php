@@ -7,7 +7,7 @@
 	<h1 class="h3 mb-3 font-weight-normal">Bienvenido al Sistema de Acceso a Servicios Remotos de Persistencia (SASeRPe)</h1>
 	<div class="row justify-content-lg-center align-items-lg-center">
 		<div class="col-lg-4 align-self-center">
-			<form action="" method="POST" name="form_login" id="form_login">
+			<form method="POST" name="form_login" id="form_login" action="<?php echo base_url();?>login/login">
 				<div class="form-group"><svg class="bi bi-person-circle" width="72" height="72" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 					<path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"/>
 					<path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
@@ -34,6 +34,7 @@
 
 				<p class="mt-5 mb-3 text-muted">&copy; 2020</p>
 			</form>
+			<div><?= $mensaje ?></div>
 		</div>
 	</div>
 </div>

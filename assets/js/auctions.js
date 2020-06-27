@@ -1,3 +1,7 @@
+
+var sesionID = $('#sesion').val();
+var idUser = $('#rfc').val();
+
 function init() {
     $(document).ready(function() {
         setupStocksEventSource();
@@ -8,7 +12,7 @@ function init() {
 }
 
 function setupStocksEventSource() {
-    var source = new EventSource('http://localhost:8080/suscribe-hilos?sessionID=C');
+    var source = new EventSource('http://localhost:8080/suscribe-hilos?sessionID='+sesionID);
     source.addEventListener('bloqueo-hilos', function(e) {
          console.log(e.data);
          var data = JSON.parse(e.data);
@@ -78,7 +82,7 @@ function getAcciones(){
 
 function getPortafolio(RFC_usuario) {
     $.ajax({
-        url:'http://localhost:8080/visualizar-portafolio/1111111111',
+        url:'http://localhost:8080/visualizar-portafolio/'+idUser,
         type: 'GET', dataType:'JSON',
         success: function (response) {
             $("#portafolio").html("");
@@ -117,7 +121,7 @@ function stocks(action){
 
 function buyStocks(company,stocks,price_offer){
     var request = {
-        RFC_usuario:"1111111111",
+        RFC_usuario: idUser,
         RFC_empresa: company,
         precio_accion_prop: price_offer,
         operacion_accion_prop: stocks,
@@ -140,7 +144,7 @@ function buyStocks(company,stocks,price_offer){
 
 function sellStocks(company,stocks,price_offer){
     var request = {
-        RFC_usuario:"1111111111",
+        RFC_usuario: idUser,
         RFC_empresa: company,
         precio_accion_prop: price_offer,
         operacion_accion_prop: stocks,
@@ -160,5 +164,7 @@ function sellStocks(company,stocks,price_offer){
         }
     });
 }
-
+function logout(){
+    window.location.href = 'http://localhost/saserpe-client/login/logout';
+}
 init();

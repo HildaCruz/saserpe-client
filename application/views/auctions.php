@@ -1,10 +1,12 @@
-<script language="JavaScript" type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-3.5.1.min.js"></script>
-<script language="JavaScript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="<?php echo base_url();?>assets/js/auctions.js"></script>
+
 
 <div class="container">
+<input style="display:none;" id="sesion" name = "sesion" value="<?= $this->session->userdata('id_sesion');?>">
+<input style="display:none;" id="rfc" name = "rfc" value="<?= $this->session->userdata('rfc_usuario');?>">
     <div>
-        <?= $string ?>
+        <?php
+        echo "RFC Usuario ". $this->session->userdata('rfc_usuario');
+         ?>
         <h1>Acciones</h1>
         <table>
             <tr>
@@ -39,5 +41,9 @@
         <button id="btn_compra" class="btn-icon" onclick="stocks('b')">Compra</button>
         <button id="btn_venta" class="btn-icon" onclick="stocks('s')">Venta</button>
     </div>
+    <button id="btn_logout" class="btn-icon" onclick="logout()">Logout</button>
 </div>
+<script language="JavaScript" type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-3.5.1.min.js"></script>
+<script language="JavaScript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="<?php echo base_url();?>assets/js/auctions.js"></script>
 
