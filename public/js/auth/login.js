@@ -15,7 +15,8 @@ function validate() {
 		var username = datos.get('usuario');
 		var password = datos.get('contrasena');
 		var data = { RFC_usuario: username, password: password};
-		data['session_id'] =  btoa( JSON.stringify(data) );
+		const idSession = Date.now();
+		data['session_id'] = idSession;
 
 		api(url, data);
 	});

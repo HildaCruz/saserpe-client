@@ -5,7 +5,7 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->helper(array('getmenu', 'auth/login_rules'));
+		$this->load->helper(array('getmenu'));
 		$this->load->library(array('form_validation'));
 	}
 
