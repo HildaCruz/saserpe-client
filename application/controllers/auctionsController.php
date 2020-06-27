@@ -15,6 +15,7 @@ class AuctionsController extends CI_Controller {
         //$data = array();
         
         $data["string"] = "hola";
+        $this->load->view('cabecera');
         $this->load->view('auctions', $data);
     }
 
