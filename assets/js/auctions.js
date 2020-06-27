@@ -19,12 +19,10 @@ function setupStocksEventSource() {
          var is_blocked = data.bloqueo;
 
          if(is_blocked === true){
-             //alert("bloqueo aHHH");
              $("#btn_compra").disabled = true;
              $("#btn_venta").disabled = true;
          }
          if(is_blocked === false){
-             //alert("desblokeo");
              $("#btn_compra").disabled = false;
              $("#btn_venta").disabled = false;
          }
@@ -37,19 +35,17 @@ function setupStocksEventSource() {
         var data = JSON.parse(e.data);
         var is_winner = data.ganador;
         if (is_winner === true){
-            message = "Felicidades, ganaste x acciones de la empresa x";
+            message = "Felicidades, ganaste acciones de la empresa " + data.empresa;
         }
         if (is_winner === true) {
-            message = "Lo sentimos, no ganaste x acciones de la empresa x :c";
+            message = "Lo sentimos, no ganaste x acciones de la empresa " + data.empresa;
         }
          $("#response_messages").append(message);
-         //mensajes
     }, false);
     source.addEventListener('actualizar-propuesta', function(e) {
          console.log(e.data);
          $("#response_messages").append(e.data);
          //mensajes
-         //reload page
          location.reload();
     }, false);
 }
@@ -91,8 +87,8 @@ function getPortafolio(RFC_usuario) {
                 html_tr ="<tr><td>{rfc}</td><td>{acciones}</td><td>{precio_actual}</td><td>{precio_compra}</td></tr><br>";
                 html_tr = html_tr.replace("{rfc}", entry['rfc_empresa']);
                 html_tr = html_tr.replace("{acciones}", entry['acciones_usr']);
-                html_tr = html_tr.replace("{precio_actual}", entry['precio_accion_usr']);
                 html_tr = html_tr.replace("{precio_compra}",  entry['precio_compra'] );
+                html_tr = html_tr.replace("{precio_actual}", entry['precio_accion_usr']);
                 $("#portafolio").append(html_tr);
             });
 
@@ -135,9 +131,13 @@ function buyStocks(company,stocks,price_offer){
         success: function (response) {
             console.log(response);
             var message = JSON.parse(response);
+            $("#response_messages").append(message.responseText);
+
         },
         error : function(error) {
             console.log(error);
+            var message = JSON.parse(error);
+            $("#response_messages").append(message.responseText);
         }
     });
 }
@@ -158,9 +158,12 @@ function sellStocks(company,stocks,price_offer){
         success: function (response) {
             console.log(response);
             var message = JSON.parse(response);
+            $("#response_messages").append(message.responseText);
         },
         error : function(error) {
             console.log(error);
+            var message = JSON.parse(error);
+            $("#response_messages").append(message.responseText);
         }
     });
 }

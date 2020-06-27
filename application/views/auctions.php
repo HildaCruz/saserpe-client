@@ -25,8 +25,8 @@
             <tr>
                 <th>RFC Empresa</th>
                 <th>Acciones compradas</th>
-                <th>Precio de compra actual</th>
                 <th>Precio de compra ofertado</th>
+                <th>Precio de compra actual</th>
             </tr>
             <tbody id="portafolio"></tbody>
         </table>
