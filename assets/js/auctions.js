@@ -66,10 +66,50 @@ function setupStocksEventSource() {
     }, false);
     source.addEventListener('actualizar-propuesta', function(e) {
          console.log(e.data);
-         $("#response_messages").append(e.data);
-         //mensajes
+         $("#propuesta_activas").html("");
+         var html_tr = "";
+         datos = JSON.parse(e.data);
+         datos.forEach(function(entry) {
+             var tipo = "";
+             if (entry['tipo_accion'] == 'C'){
+                 tipo = "Compra";
+             } else if (entry['tipo_accion'] == 'V'){
+                 tipo = "Venta";
+             }
+             html_tr = "<tr><td>{rfc_e}</td><td>{rfc_u}</td><td>{propuesta}</td><td>{fecha}</td><td>{tipo}</td><td>{numero}</td></tr><br>";
+             html_tr = html_tr.replace("{rfc_e}", entry['RFC_usuario']);
+             html_tr = html_tr.replace("{rfc_u}", entry['RFC_empresa']);
+             html_tr = html_tr.replace("{propuesta}", entry['precio_accion_prop']);
+             html_tr = html_tr.replace("{fecha}", entry['fecha_prop']);
+             html_tr = html_tr.replace("{tipo}", tipo);
+             html_tr = html_tr.replace("{numero}",entry['operacion_accion_prop']);
+             $("#propuesta_activas").append(html_tr);
+         });
         setTimeout(function(){location.reload()}, 8000);
     }, false);
+    source.addEventListener('primera-propuesta', function(e) {
+        console.log(e.data);
+           $("#propuesta_activas").html("");
+           var html_tr = "";
+           datos = JSON.parse(e.data);
+           datos.forEach(function(entry) {
+               var tipo = "";
+               if (entry['tipo_accion'] == 'C'){
+                   tipo = "Compra";
+               } else if (entry['tipo_accion'] == 'V'){
+                   tipo = "Venta";
+               }
+               html_tr = "<tr><td>{rfc_e}</td><td>{rfc_u}</td><td>{propuesta}</td><td>{fecha}</td><td>{tipo}</td><td>{numero}</td></tr><br>";
+               html_tr = html_tr.replace("{rfc_e}", entry['RFC_usuario']);
+               html_tr = html_tr.replace("{rfc_u}", entry['RFC_empresa']);
+               html_tr = html_tr.replace("{propuesta}", entry['precio_accion_prop']);
+               html_tr = html_tr.replace("{fecha}", entry['fecha_prop']);
+               html_tr = html_tr.replace("{tipo}", tipo);
+               html_tr = html_tr.replace("{numero}",entry['operacion_accion_prop']);
+               $("#propuesta_activas").append(html_tr);
+           });
+       
+   }, false);
 }
 function setupNewPropuestaEventSrouce() {
     var source = new EventSource(urlLocal+'suscribe-propuesta');

@@ -23,7 +23,24 @@
             </table>
         </div>
     <br>
-    <div id="tabla_portafolio">
+    <div>
+        <h1>Propuestas</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">RFC Empresa</th>
+                    <th scope="col">RFC Usuario</th>
+                    <th scope="col">Precio propuesto</th>
+                    <th scope="col">Fecha y Hora</th>
+                    <th scope="col">Tipo de Accion</th>
+                    <th scope="col">No. Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="propuesta_activas"></tbody>
+        </table>
+    </div>
+    <br>
+    <div>
         <h1>Mi portafolio</h1>
         <table class="table">
             <thead class="thead-dark">
@@ -36,6 +53,7 @@
             <tbody id="portafolio"></tbody>
         </table>
     </div>
+    
     <br>
     <div id="response_messages" class="message" style="color: blue"></div>
     <div id = "mensaje_correcto" class="alert alert-success alert-dismissible fade show" role="alert">

@@ -14,7 +14,7 @@ class Login extends CI_Controller {
 		$data['menu'] = main_menu();
 		$data["mensaje"] = "";
 		if ($this->session->userdata('rfc_usuario')){
-			$this->load->view('auctions', $data);
+			$this->load->view('subastas', $data);
 		}else{
 			$this->load->view('login', $data);
 		}
@@ -34,7 +34,7 @@ class Login extends CI_Controller {
 
 		if($this->session->userdata('id_sesion')){
 			//$this->load->view('cabecera');
-			$this->load->view('auctions', $data);
+			$this->load->view('subastas', $data);
 		} else{
 			$curl = curl_init();
 			$datos = $this->input->post();
@@ -73,7 +73,7 @@ class Login extends CI_Controller {
 					$this->session->set_userdata('rfc_usuario',$nombre);
 					$this->session->set_userdata('id_sesion',$sessionID);
 					//$this->load->view('cabecera');
-					$this->load->view('auctions', $data);
+					$this->load->view('subastas', $data);
 				}
 			}
 		}
