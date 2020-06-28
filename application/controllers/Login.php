@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
+	public $urlLocal = "http://localhost:8081/";
 
 	public function __construct() {
 		parent::__construct();
@@ -47,7 +48,7 @@ class Login extends CI_Controller {
 				"password": "'.$password.'",
 				"session_id" : "'.$sessionID.'"
 			}';
-			curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/login-usuario');
+			curl_setopt($curl, CURLOPT_URL, $this->urlLocal.'login-usuario');
 			curl_setopt($curl, CURLOPT_POST, true);
 			curl_setopt($curl, CURLOPT_HTTPHEADER, ['content-type: application/json']);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $request);

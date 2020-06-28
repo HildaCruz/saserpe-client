@@ -37,42 +37,9 @@
 		</div>
 		<button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesi&oacute;n</button>
 
-		<!-- Button trigger modal -->
 		<div style="margin-top: 1em;">¿No tienes una cuenta?
-			<a href="<?= $menu['Registro']['url'] ?>" data-toggle="modal" data-target="#registerModal"><?= $menu['Registro']['title'] ?></a>
+			<a href="<?= $menu['Registro']['url'] ?>"><?= $menu['Registro']['title'] ?></a>
 		</div>
-
-		<!-- Modal -->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						...
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save changes</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<p class="mt-5 mb-3 text-muted">&copy; 2020</p>
-	</form>
-
-	<script>
-		$('.openBtn').on('click',function(){
-			$('.modal-body').load('content.html',function(){
-				$('#myModal').modal({show:true});
-			});
-		});
-	</script>
 
 </div>
 </body>
