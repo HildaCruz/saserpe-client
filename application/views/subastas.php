@@ -30,8 +30,8 @@
         <table class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">RFC Empresa</th>
                     <th scope="col">RFC Usuario</th>
+                    <th scope="col">RFC Empresa</th>
                     <th scope="col">Precio propuesto</th>
                     <th scope="col">Fecha y Hora</th>
                     <th scope="col">Tipo de Accion</th>
