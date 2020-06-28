@@ -26,19 +26,28 @@ function setupStocksEventSource() {
              $("#btn_compra").disabled = false;
              $("#btn_venta").disabled = false;
          }
-
-        $("#response_messages").append(e.data);
     }, false);
     source.addEventListener('finalizacion-propuesta', function(e) {
         console.log(e.data);
         var message = "";
         var data = JSON.parse(e.data);
         var is_winner = data.ganador;
-        if (is_winner === true){
-            message = "Felicidades, ganaste acciones de la empresa " + data.empresa;
+
+        if(data.tipoAccion === "C"){
+            if (is_winner === true){
+                message = "Felicidades, ganaste acciones de la empresa " + data.empresa;
+            }
+            else if (is_winner === false) {
+                message = "Lo sentimos, no ganaste acciones de la empresa " + data.empresa;
+            }
         }
-        if (is_winner === true) {
-            message = "Lo sentimos, no ganaste x acciones de la empresa " + data.empresa;
+        else if (data.tipoAccion=== "V") {
+            if (is_winner === true){
+                message = "Felicidades, vendiste acciones de la empresa " + data.empresa;
+            }
+            else if (is_winner === false) {
+                message = "Lo sentimos, no vendiste acciones de la empresa " + data.empresa;
+            }
         }
          $("#response_messages").append(message);
     }, false);
@@ -46,7 +55,7 @@ function setupStocksEventSource() {
          console.log(e.data);
          $("#response_messages").append(e.data);
          //mensajes
-         location.reload();
+        setTimeout(function(){location.reload()}, 8000);
     }, false);
 }
 function setupNewPropuestaEventSrouce() {
@@ -76,7 +85,7 @@ function getAcciones(){
     });
 }
 
-function getPortafolio(RFC_usuario) {
+function getPortafolio() {
     $.ajax({
         url:'http://localhost:8080/visualizar-portafolio/'+idUser,
         type: 'GET', dataType:'JSON',
@@ -84,11 +93,11 @@ function getPortafolio(RFC_usuario) {
             $("#portafolio").html("");
             var html_tr = "";
             response.forEach(function(entry) {
-                html_tr ="<tr><td>{rfc}</td><td>{acciones}</td><td>{precio_actual}</td><td>{precio_compra}</td></tr><br>";
+                html_tr ="<tr><td>{rfc}</td><td>{acciones}</td><td>{precio_compra}</td></tr><br>";
                 html_tr = html_tr.replace("{rfc}", entry['rfc_empresa']);
                 html_tr = html_tr.replace("{acciones}", entry['acciones_usr']);
                 html_tr = html_tr.replace("{precio_compra}",  entry['precio_compra'] );
-                html_tr = html_tr.replace("{precio_actual}", entry['precio_accion_usr']);
+                //html_tr = html_tr.replace("{precio_actual}", entry['precio_accion_usr']);
                 $("#portafolio").append(html_tr);
             });
 
@@ -137,7 +146,7 @@ function buyStocks(company,stocks,price_offer){
         error : function(error) {
             console.log(error);
             var message = JSON.parse(error);
-            $("#response_messages").append(message.responseText);
+            $("#response_messages").append(message.mensaje);//sin lo de json parse el index era mensaje, responseText es donde esta el mensaje
         }
     });
 }
@@ -163,7 +172,7 @@ function sellStocks(company,stocks,price_offer){
         error : function(error) {
             console.log(error);
             var message = JSON.parse(error);
-            $("#response_messages").append(message.responseText);
+            $("#response_messages").append(message.mensaje);//lo mismo aca, si jala en compra jala en venta
         }
     });
 }

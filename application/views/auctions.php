@@ -25,8 +25,7 @@
             <tr>
                 <th>RFC Empresa</th>
                 <th>Acciones compradas</th>
-                <th>Precio de compra ofertado</th>
-                <th>Precio de compra actual</th>
+                <th>Último precio de C/V ofertado</th>
             </tr>
             <tbody id="portafolio"></tbody>
         </table>
