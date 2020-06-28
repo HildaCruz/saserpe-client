@@ -144,17 +144,18 @@ function buyStocks(company,stocks,price_offer){
     alert(JSON.stringify(request));
     $.ajax({
         url:urlLocal+'upload-propuesta/',
-        type: 'POST', contentType:'application/JSON', dataType:'application/JSON',
+        type: 'POST', 
+        contentType: "application/json",
+        dataType: "json",
         data: JSON.stringify(request),
         success: function (response) {
             console.log(response);
-            var message = JSON.parse(response);
-            $("#response_messages").append(message.responseText);
+            $("#response_messages").append(response.mensaje);
 
         },
         error : function(error) {
             console.log(error);
-            var message = JSON.parse(error);
+            var message = error.responseJSON;
             $("#response_messages").append(message.mensaje);//sin lo de json parse el index era mensaje, responseText es donde esta el mensaje
         }
     });

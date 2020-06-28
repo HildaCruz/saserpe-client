@@ -17,6 +17,15 @@
 				<path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/>
 			</svg></div>
 
+		<?php if(!empty($mensaje)) {
+			$alert = '<div class="alert alert-danger alert-dismissible fade show" role="alert">'
+					.$mensaje
+					.'<button type="button" class="close" data-dismiss="alert" aria-label="Close">'
+					.'<span aria-hidden="true">&times;</span></button>'
+					.'</div>';
+			echo $alert;
+		}?>
+
 		<div id="usuario">
 			<label for="usuario" class="sr-only">Usuario</label>
 			<input type="text" maxlength="10" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
@@ -26,14 +35,44 @@
 			<label for="contrasena" class="sr-only">Contrase&ntilde;a</label>
 			<input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="Contrase&ntilde;a" required>
 		</div>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesi&oacute;n</button>
 
+		<!-- Button trigger modal -->
 		<div style="margin-top: 1em;">¿No tienes una cuenta?
-			<a href="<?= $menu['Registro']['url'] ?>"><?= $menu['Registro']['title'] ?></a>
+			<a href="<?= $menu['Registro']['url'] ?>" data-toggle="modal" data-target="#registerModal"><?= $menu['Registro']['title'] ?></a>
+		</div>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						...
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<p class="mt-5 mb-3 text-muted">&copy; 2020</p>
 	</form>
-	<div><?= $mensaje ?></div>
+
+	<script>
+		$('.openBtn').on('click',function(){
+			$('.modal-body').load('content.html',function(){
+				$('#myModal').modal({show:true});
+			});
+		});
+	</script>
+
 </div>
 </body>
