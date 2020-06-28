@@ -135,7 +135,7 @@ function buyStocks(company,stocks,price_offer){
     };
     alert(JSON.stringify(request));
     $.ajax({
-        url:'http://127.0.0.1:8080/upload-propuesta/',
+        url:urlLocal+'upload-propuesta/',
         type: 'POST', contentType:'application/JSON', dataType:'application/JSON',
         data: JSON.stringify(request),
         success: function (response) {
@@ -162,7 +162,7 @@ function sellStocks(company,stocks,price_offer){
     };
     alert(JSON.stringify(request));
     $.ajax({
-        url:'http://127.0.0.1:8080/upload-propuesta/',
+        url:urlLocal+'upload-propuesta/',
         type: 'POST', contentType:'application/JSON', dataType:'application/JSON',
         data: JSON.stringify(request),
         success: function (response) {
