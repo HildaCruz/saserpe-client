@@ -114,7 +114,7 @@ function setupStocksEventSource() {
 function setupNewPropuestaEventSrouce() {
     var source = new EventSource(urlLocal+'suscribe-propuesta');
     source.addEventListener('propuesta-news', function(e) {
-        console.log(e.data);
+        setTimeout(function(){location.reload()}, 8000);
     }, false);
 }
 
@@ -185,7 +185,7 @@ function buyStocks(company,stocks,price_offer){
         operacion_accion_prop: stocks,
         tipo_accion: "C"
     };
-    alert(JSON.stringify(request));
+    
     $.ajax({
         url:urlLocal+'upload-propuesta/',
         type: 'POST', 
@@ -220,7 +220,7 @@ function sellStocks(company,stocks,price_offer){
         operacion_accion_prop: stocks,
         tipo_accion: "V"
     };
-    alert(JSON.stringify(request));
+    
     $.ajax({
         url:urlLocal+'upload-propuesta/',
         type: 'POST', contentType:'application/JSON', dataType:'application/JSON',
