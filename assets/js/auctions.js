@@ -54,16 +54,8 @@ function setupStocksEventSource() {
     }, false);
     source.addEventListener('actualizar-propuesta', function(e) {
          console.log(e.data);
-            $("#propuesta").html("");
-            var html_tr = "";
-            e.data.forEach(function(entry) {
-                html_tr = "<tr><td>{rfc_e}</td><td>{rfc_u}</td><td>{propuesta}</td><td>{tipo}</td></tr><br>";
-                html_tr = html_tr.replace("{rfc_e}", entry['RFC_usuario']);
-                html_tr = html_tr.replace("{rfc_u}", entry['RFC_empresa']);
-                html_tr = html_tr.replace("{propuesta}", entry['precio_accion_prop']);
-                html_tr = html_tr.replace("{tipo}", entry['tipo_accion']);
-                $("#propuesta").append(html_tr);
-            });
+         $("#response_messages").append(e.data);
+         //mensajes
         setTimeout(function(){location.reload()}, 8000);
     }, false);
 }
