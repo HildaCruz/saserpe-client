@@ -37,20 +37,32 @@ function setupStocksEventSource() {
         if(data.tipoAccion === "C"){
             if (is_winner === true){
                 message = "Felicidades, ganaste acciones de la empresa " + data.empresa;
+                document.getElementById("mensajeBueno").innerHTML = message;
+                document.getElementById("mensaje_correcto").style.display = 'block';
+                $("#mensaje_correcto").delay(3200).fadeOut(3000);
             }
             else if (is_winner === false) {
                 message = "Lo sentimos, no ganaste acciones de la empresa " + data.empresa;
+                document.getElementById("mensajeMalo").innerHTML = message;
+                document.getElementById("mensaje_error").style.display = 'block';
+                $("#mensaje_error").delay(3200).fadeOut(3000);
             }
         }
         else if (data.tipoAccion=== "V") {
             if (is_winner === true){
                 message = "Felicidades, vendiste acciones de la empresa " + data.empresa;
+                document.getElementById("mensajeBueno").innerHTML = message;
+                document.getElementById("mensaje_correcto").style.display = 'block';
+                $("#mensaje_correcto").delay(3200).fadeOut(3000);
             }
             else if (is_winner === false) {
                 message = "Lo sentimos, no vendiste acciones de la empresa " + data.empresa;
+                document.getElementById("mensajeMalo").innerHTML = message;
+                document.getElementById("mensaje_error").style.display = 'block';
+                $("#mensaje_error").delay(3200).fadeOut(3000);
             }
         }
-         $("#response_messages").append(message);
+         //$("#response_messages").append(message);
     }, false);
     source.addEventListener('actualizar-propuesta', function(e) {
          console.log(e.data);
@@ -142,13 +154,20 @@ function buyStocks(company,stocks,price_offer){
         data: JSON.stringify(request),
         success: function (response) {
             console.log(response);
-            $("#response_messages").append(response.mensaje);
+            document.getElementById("mensajeBueno").innerHTML = response.mensaje;
+            document.getElementById("mensaje_correcto").style.display = 'block';
+            cleanData();
+            $("#mensaje_correcto").delay(3200).fadeOut(3000);
+            //$("#response_messages").append(response.mensaje);
 
         },
         error : function(error) {
             console.log(error);
             var message = error.responseJSON;
-            $("#response_messages").append(message.mensaje);//sin lo de json parse el index era mensaje, responseText es donde esta el mensaje
+            document.getElementById("mensajeMalo").innerHTML = message.mensaje;
+            document.getElementById("mensaje_error").style.display = 'block';
+            $("#mensaje_error").delay(3200).fadeOut(3000);
+            //$("#response_messages").append(message.mensaje);//sin lo de json parse el index era mensaje, responseText es donde esta el mensaje
         }
     });
 }
@@ -168,17 +187,27 @@ function sellStocks(company,stocks,price_offer){
         data: JSON.stringify(request),
         success: function (response) {
             console.log(response);
-            var message = JSON.parse(response);
-            $("#response_messages").append(message.responseText);
+            document.getElementById("mensajeBueno").innerHTML = response.mensaje;
+            document.getElementById("mensaje_correcto").style.display = 'block';
+            cleanData();
+            $("#mensaje_correcto").delay(3200).fadeOut(3000);
         },
         error : function(error) {
             console.log(error);
-            var message = JSON.parse(error);
-            $("#response_messages").append(message.mensaje);//lo mismo aca, si jala en compra jala en venta
+            var message = error.responseJSON;
+            document.getElementById("mensajeMalo").innerHTML = message.mensaje;
+            document.getElementById("mensaje_error").style.display = 'block';
+            $("#mensaje_error").delay(3200).fadeOut(3000);
+            //$("#response_messages").append(message.mensaje);//lo mismo aca, si jala en compra jala en venta
         }
     });
 }
 function logout(){
     window.location.href = 'http://localhost/saserpe-client/login/logout';
+}
+function cleanData(){
+    document.getElementById("company").value='';
+    document.getElementById("stocks").value='';
+    document.getElementById("price_offer").value='';
 }
 init();
