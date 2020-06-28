@@ -223,7 +223,8 @@ function sellStocks(company,stocks,price_offer){
     
     $.ajax({
         url:urlLocal+'upload-propuesta/',
-        type: 'POST', contentType:'application/JSON', dataType:'application/JSON',
+        type: 'POST', contentType:'application/JSON',
+        dataType: "json",
         data: JSON.stringify(request),
         success: function (response) {
             console.log(response);
