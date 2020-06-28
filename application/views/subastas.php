@@ -20,6 +20,19 @@
     </div>
     <br>
     <div>
+        <h1>Propuestas</h1>
+        <table>
+            <tr>
+                <th>RFC Empresa</th>
+                <th>RFC Usuario</th>
+                <th>Precio ofertado</th>
+                <th>Tipo de propuesta</th>
+            </tr>
+            <tbody id="propuesta"></tbody>
+        </table>
+    </div>
+    <br>
+    <div>
         <h1>Mi portafolio</h1>
         <table>
             <tr>
