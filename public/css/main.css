@@ -55,3 +55,10 @@ p.footer {
 table{
     text-align: center;
 }
+
+.btn-actions {
+    text-align: center;
+}
+
+.pl-0{padding-left: 0!important;}
+.pr-0{padding-right: 0!important;}
