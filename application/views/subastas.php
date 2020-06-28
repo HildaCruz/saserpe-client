@@ -1,13 +1,15 @@
 
-<link rel="stylesheet" href="<?php echo base_url();?>assets/css/auctions.css">
+<link rel="stylesheet" href="<?php echo base_url();?>public/css/auctions.css">
 <div class="container">
 <button id="btn_logout" type="button" class="btn btn-danger" onclick="logout()">Logout</button>
 <input style="display:none;" id="sesion" name = "sesion" value="<?= $this->session->userdata('id_sesion');?>">
 <input style="display:none;" id="rfc" name = "rfc" value="<?= $this->session->userdata('rfc_usuario');?>">
 <div id="principal" class="overflow-auto">
-        <?php
-        echo "Sesion ID ". $this->session->userdata('id_sesion');
-         ?>
+
+        <div>
+            <h1><b><?php        echo "Sesion ID: ". $this->session->userdata('id_sesion');         ?></b></h1>
+        </div>
+
         <h1>Acciones</h1>
         <div id = "tabla_empresas">
             <table class="table">
@@ -69,7 +71,7 @@
         <h1>Realizar propuesta</h1>
         <div class="form-group">
             <label for="company">Empresa</label>
-            <input type="text" class="form-control" id="company" placeholder="Ingresa la compañia">
+            <input type="text" class="form-control" id="company" placeholder="RFC de la empresa">
         </div>
         <div class="form-group">
             <label for="stocks">No. Acciones</label>
@@ -80,12 +82,13 @@
             <input type="number" class="form-control" id="price_offer" placeholder="Precio propuesto">
         </div>
     </form>
-    <button id = "btn_compra" type="button" class="btn btn-primary" onclick="stocks('b')">Compra</button>
-    <button id = "btn_venta"  type="button" class="btn btn-primary" onclick="stocks('s')">Venta</button>
+    <div class="btn-actions">
+        <button id = "btn_compra" type="button" class="btn btn-info" onclick="stocks('b')">Comprar acciones</button>
+        <button id = "btn_venta"  type="button" class="btn btn-dark" onclick="stocks('s')">Vender acciones</button>
+    </div>
+
 </div>
 </div>
-<script language="JavaScript" type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-3.5.1.min.js"></script>
-<script language="JavaScript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script language="JavaScript" type="text/javascript" src="<?php echo base_url();?>assets/js/auctions.js"></script>
 
 

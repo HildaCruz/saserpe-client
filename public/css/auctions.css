@@ -1,0 +1,20 @@
+#mensaje_correcto{
+    display: none;
+}
+#mensaje_error{
+    display:none;
+}
+
+.container {
+    padding: 5%;
+    border: 1px solid #D0D0D0;
+    box-shadow: 0 0 8px #434343;
+    background-color: white;
+    border-radius: 10px;
+}
+#btn_logout{
+    float: right!important;
+}
+.btn-actions{
+    text-align: center;
+}

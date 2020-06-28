@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
-	public $urlLocal = "http://localhost:8081/";
+	public $urlLocal = "http://localhost:8080/";
 
 	public function __construct() {
 		parent::__construct();

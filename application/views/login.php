@@ -4,7 +4,7 @@
 </head>
 
 <body class="text-center" style="background-color: #9CD9CE;">
-<div class="container" style="margin-top: 4em;">
+<div class="container">
 	<div class="row justify-content-center align-items-center">
 		<div class="col-7 align-self-center">
 			<h1 class="h3 mb-3 font-weight-normal">Bienvenido al Sistema de Acceso a Servicios Remotos de Persistencia (SASeRPe)</h1>
