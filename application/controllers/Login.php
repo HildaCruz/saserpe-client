@@ -47,7 +47,7 @@ class Login extends CI_Controller {
 				"password": "'.$password.'",
 				"session_id" : "'.$sessionID.'"
 			}';
-			curl_setopt($curl, CURLOPT_URL, 'http://localhost:8081/login-usuario');
+			curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/login-usuario');
 			curl_setopt($curl, CURLOPT_POST, true);
 			curl_setopt($curl, CURLOPT_HTTPHEADER, ['content-type: application/json']);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
