@@ -5,7 +5,7 @@
 <body>
 <div class="container" style="margin-top: 4em;">
 	<div class="row justify-content-center align-items-center">
-		<div class="col-12 align-self-center"> <!--col de 7-->
+		<div class="col-7 align-self-center"> <!--col de 7-->
 			<h1 class="h3 mb-3 font-weight-normal text-center">Crea tu cuenta</h1><br>
 			<form id="form_registro">
 				<div class="form-group row">

@@ -1,3 +1,7 @@
+var urlLocal = 'http://localhost:8080/';
+
+init();
+
 function init() {
 	$(document).ready(function() {
 		
@@ -6,7 +10,7 @@ function init() {
 }
 
 function validate() {
-	var url = 'http://localhost:8080/login-usuario';
+	var url = urlLocal+'login-usuario';
 	var form = document.getElementById('form_login');
 	var respuesta = document.getElementById('respuesta');
 
@@ -42,5 +46,3 @@ function api(url, data) {
 			}
 		});
 }
-
-init();

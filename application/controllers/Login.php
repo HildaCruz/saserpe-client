@@ -5,23 +5,17 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->library('session');
-		$this->load->helper(array('getmenu'));
-		$this->load->library(array('form_validation'));
-		$this->load->helper('string');
+		$this->load->view('cabecera');
+		$this->load->helper(array('getmenu', 'string', 'html'));
+		$this->load->library(array('form_validation', 'session'));
 	}
 
 	public function index() {
 		$data['menu'] = main_menu();
 		$data["mensaje"] = "";
 		if ($this->session->userdata('rfc_usuario')){
-			$this->load->view('cabecera');
 			$this->load->view('auctions', $data);
 		}else{
-			
-		
-		
-			$this->load->view('cabecera');
 			$this->load->view('login', $data);
 		}
 	}
@@ -39,7 +33,7 @@ class Login extends CI_Controller {
 		
 
 		if($this->session->userdata('id_sesion')){
-			$this->load->view('cabecera');
+			//$this->load->view('cabecera');
 			$this->load->view('auctions', $data);
 		} else{
 			$curl = curl_init();
@@ -53,7 +47,7 @@ class Login extends CI_Controller {
 				"password": "'.$password.'",
 				"session_id" : "'.$sessionID.'"
 			}';
-			curl_setopt($curl, CURLOPT_URL, 'http://localhost:8080/login-usuario');
+			curl_setopt($curl, CURLOPT_URL, 'http://localhost:8081/login-usuario');
 			curl_setopt($curl, CURLOPT_POST, true);
 			curl_setopt($curl, CURLOPT_HTTPHEADER, ['content-type: application/json']);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
@@ -66,19 +60,19 @@ class Login extends CI_Controller {
 				print_r($err);
 				$data['error'] = $err;
 	
-				$this->load->view('cabecera');
+				//$this->load->view('cabecera');
 				$this->load->view('login', $data);
 			} else {
 				$response = json_decode($result, true);
 				if (!$response['login']){
 					$mensaje = $response['mensaje'];
 					$data['mensaje'] = $mensaje;
-					$this->load->view('cabecera');
+					//$this->load->view('cabecera');
 					$this->load->view('login', $data);
 				} else{
 					$this->session->set_userdata('rfc_usuario',$nombre);
 					$this->session->set_userdata('id_sesion',$sessionID);
-					$this->load->view('cabecera');
+					//$this->load->view('cabecera');
 					$this->load->view('auctions', $data);
 				}
 			}
@@ -92,8 +86,8 @@ class Login extends CI_Controller {
 		$this->session->unset_userdata('rfc_usuario');
         $this->session->unset_userdata('id_sesion');
         $this->session->sess_destroy();
-		
-		$this->load->view('cabecera');
+
+		//$this->load->view('cabecera');
 		$this->load->view('login', $data);
 	}
 }

@@ -1,6 +1,7 @@
 
 var sesionID = $('#sesion').val();
 var idUser = $('#rfc').val();
+var urlLocal = 'http://localhost:8080/';
 
 function init() {
     $(document).ready(function() {
@@ -12,7 +13,7 @@ function init() {
 }
 
 function setupStocksEventSource() {
-    var source = new EventSource('http://localhost:8080/suscribe-hilos?sessionID='+sesionID);
+    var source = new EventSource(urlLocal+'suscribe-hilos?sessionID='+sesionID);
     source.addEventListener('bloqueo-hilos', function(e) {
          console.log(e.data);
          var data = JSON.parse(e.data);
@@ -59,7 +60,7 @@ function setupStocksEventSource() {
     }, false);
 }
 function setupNewPropuestaEventSrouce() {
-    var source = new EventSource('http://localhost:8080/suscribe-propuesta');
+    var source = new EventSource(urlLocal+'suscribe-propuesta');
     source.addEventListener('propuesta-news', function(e) {
         console.log(e.data);
     }, false);
@@ -67,7 +68,7 @@ function setupNewPropuestaEventSrouce() {
 
 function getAcciones(){
     $.ajax({
-       url:'http://localhost:8080/visualizar-acciones',
+       url: urlLocal+'visualizar-acciones',
        type: 'GET', dataType:'JSON',
        success: function (response) {
            $("#companies").html("");
@@ -87,7 +88,7 @@ function getAcciones(){
 
 function getPortafolio() {
     $.ajax({
-        url:'http://localhost:8080/visualizar-portafolio/'+idUser,
+        url: urlLocal+'visualizar-portafolio/'+idUser,
         type: 'GET', dataType:'JSON',
         success: function (response) {
             $("#portafolio").html("");

@@ -1,3 +1,7 @@
+var urlLocal = 'http://localhost:8080/';
+
+init();
+
 function init() {
 	$(document).ready(function() {
 		var formUser = document.getElementById('form_registro');
@@ -14,7 +18,7 @@ function init() {
 }
 
 function validate_user() {
-	var url = 'http://localhost:8080/registro-usuario';
+	var url = urlLocal+'registro-usuario';
 	var form = document.getElementById('form_registro');
 
 	form.addEventListener('submit', function (event) {
@@ -37,7 +41,7 @@ function validate_user() {
 }
 
 function validate_company() {
-	var url = 'http://localhost:8080/registro-empresa';
+	var url = urlLocal+'registro-empresa';
 	var form = document.getElementById('form_company');
 
 	form.addEventListener('submit', function (event) {
@@ -84,5 +88,3 @@ function api(url, data) {
 			}
 		});
 }
-
-init();
