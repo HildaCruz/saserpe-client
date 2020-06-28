@@ -89,6 +89,6 @@
 
 </div>
 </div>
-<script language="JavaScript" type="text/javascript" src="<?php echo base_url();?>assets/js/auctions.js"></script>
+<script language="JavaScript" type="text/javascript" src="<?php echo base_url();?>public/js/auctions.js"></script>
 
 
