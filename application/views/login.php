@@ -28,7 +28,7 @@
 
 		<div id="usuario">
 			<label for="usuario" class="sr-only">Usuario</label>
-			<input type="text" maxlength="10" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required autofocus>
+			<input type="text" id="usuario" name="usuario" class="form-control" placeholder="Usuario" required minlength="10" maxlength="10" autofocus>
 		</div>
 
 		<div class="form-group" id="contrasena">

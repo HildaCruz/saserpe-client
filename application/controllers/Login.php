@@ -15,6 +15,7 @@ class Login extends CI_Controller {
 		$data['menu'] = main_menu();
 		$data["mensaje"] = "";
 		if ($this->session->userdata('rfc_usuario')){
+			$this->load->view('narbar', $data);
 			$this->load->view('subastas', $data);
 		}else{
 			$this->load->view('login', $data);
@@ -34,7 +35,7 @@ class Login extends CI_Controller {
 		
 
 		if($this->session->userdata('id_sesion')){
-			//$this->load->view('cabecera');
+			$this->load->view('narbar', $data);
 			$this->load->view('subastas', $data);
 		} else{
 			$curl = curl_init();
@@ -60,20 +61,18 @@ class Login extends CI_Controller {
 			if($err) {
 				print_r($err);
 				$data['error'] = $err;
-	
-				//$this->load->view('cabecera');
+
 				$this->load->view('login', $data);
 			} else {
 				$response = json_decode($result, true);
 				if (!$response['login']){
 					$mensaje = $response['mensaje'];
 					$data['mensaje'] = $mensaje;
-					//$this->load->view('cabecera');
 					$this->load->view('login', $data);
 				} else{
 					$this->session->set_userdata('rfc_usuario',$nombre);
 					$this->session->set_userdata('id_sesion',$sessionID);
-					//$this->load->view('cabecera');
+					$this->load->view('narbar', $data);
 					$this->load->view('subastas', $data);
 				}
 			}
@@ -88,7 +87,6 @@ class Login extends CI_Controller {
         $this->session->unset_userdata('id_sesion');
         $this->session->sess_destroy();
 
-		//$this->load->view('cabecera');
 		$this->load->view('login', $data);
 	}
 }
