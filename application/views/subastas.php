@@ -8,10 +8,10 @@
 }?>
 <input style="display:none;" id="sesion" name = "sesion" value="<?= $this->session->userdata('id_sesion');?>">
 <input style="display:none;" id="rfc" name = "rfc" value="<?= $this->session->userdata('rfc_usuario');?>">
-<div id="principal" class="overflow-auto">
+<div id="principal" class="">
 
         <div>
-            <h1><b><?php        echo "<b>Sesion ID:</b> ". $this->session->userdata('id_sesion');         ?></b></h1>
+            <h1><b><?php        echo "<b>Sesión ID:</b> ". $this->session->userdata('id_sesion');         ?></b></h1>
         </div>
 
         <h1>Acciones</h1>
