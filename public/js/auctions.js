@@ -230,6 +230,9 @@ function sellStocks(company,stocks,price_offer){
 function logout(){
     window.location.href = 'http://localhost/saserpe-client/login/logout';
 }
+function register(){
+	window.location.href = 'http://localhost/saserpe-client/registro/registerCompany';
+}
 function cleanData(){
     document.getElementById("company").value='';
     document.getElementById("stocks").value='';

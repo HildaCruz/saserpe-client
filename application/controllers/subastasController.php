@@ -15,6 +15,7 @@ class SubastasController extends CI_Controller {
         
         $data["string"] = "hola";
         $this->load->view('cabecera');
+        $this->load->view('narbar', $data);
         $this->load->view('subastas', $data);
     }
 

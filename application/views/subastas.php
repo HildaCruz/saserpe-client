@@ -1,13 +1,17 @@
 
 <link rel="stylesheet" href="<?php echo base_url();?>public/css/auctions.css">
 <div class="container">
-<button id="btn_logout" type="button" class="btn btn-danger" onclick="logout()">Logout</button>
+<!--<button id="btn_logout" type="button" class="btn btn-danger" onclick="logout()">Logout</button>-->
+<?php if($this->session->userdata('rfc_usuario') === 'RFCadmin99') {
+	$companyBtn = '<button id="btn_logout" type="button" class="btn btn-primary" onclick="register()">Nueva empresa</button>';
+	echo $companyBtn;
+}?>
 <input style="display:none;" id="sesion" name = "sesion" value="<?= $this->session->userdata('id_sesion');?>">
 <input style="display:none;" id="rfc" name = "rfc" value="<?= $this->session->userdata('rfc_usuario');?>">
 <div id="principal" class="overflow-auto">
 
         <div>
-            <h1><b><?php        echo "Sesion ID: ". $this->session->userdata('id_sesion');         ?></b></h1>
+            <h1><b><?php        echo "<b>Sesion ID:</b> ". $this->session->userdata('id_sesion');         ?></b></h1>
         </div>
 
         <h1>Acciones</h1>
