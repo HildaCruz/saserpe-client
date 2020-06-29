@@ -112,8 +112,8 @@ function getAcciones(){
            response.forEach(function(entry) {
             html_tr ="<tr><td>{rfc}</td><td>{acciones}</td><td>{total}</td><td>{precio}</td></tr><br>";
             html_tr = html_tr.replace("{rfc}", entry['rfc_empresa']);
-            html_tr = html_tr.replace("{acciones}", entry['acciones_empr_disp']);
-            html_tr = html_tr.replace("{total}", entry['acciones_empr_total']);
+            html_tr = html_tr.replace("{acciones}", entry['acciones_empr_total']);
+            html_tr = html_tr.replace("{total}", entry['acciones_empr_disp']);
             html_tr = html_tr.replace("{precio}",  entry['precio_accion_empr'] );
             $("#companies").append(html_tr);
        });
