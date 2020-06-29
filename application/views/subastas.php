@@ -16,8 +16,8 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">RFC Empresa</th>
-                        <th scope="col">Acciones Totales</th>
-                        <th scope="col">Acciones Disponibles</th>
+                        <th scope="col">Acciones totales</th>
+                        <th scope="col">Acciones disponibles</th>
                         <th scope="col">Precio de compra actual</th>
                     </tr>
                 </thead>
@@ -34,7 +34,7 @@
                     <th scope="col">RFC Empresa</th>
                     <th scope="col">Precio propuesto</th>
                     <th scope="col">Fecha y Hora</th>
-                    <th scope="col">Tipo de Accion</th>
+                    <th scope="col">Tipo de Acción</th>
                     <th scope="col">No. Acciones</th>
                 </tr>
             </thead>
@@ -49,7 +49,8 @@
                 <tr>
                     <th scope="col">RFC Empresa</th>
                     <th scope="col">Acciones compradas</th>
-                    <th scope="col">Último precio de Compra ofertado</th>
+                    <th scope="col">Mi precio propuesto</th>
+                    <th scope="col">Precio de compra actual</th>
                 </tr>
             </thead>
             <tbody id="portafolio"></tbody>

@@ -130,11 +130,11 @@ function getPortafolio() {
             $("#portafolio").html("");
             var html_tr = "";
             response.forEach(function(entry) {
-                html_tr ="<tr><td>{rfc}</td><td>{acciones}</td><td>{precio_compra}</td></tr><br>";
+                html_tr ="<tr><td>{rfc}</td><td>{acciones}</td><td>{precio_compra}</td><td>{precio_actual}</td></tr><br>";
                 html_tr = html_tr.replace("{rfc}", entry['rfc_empresa']);
                 html_tr = html_tr.replace("{acciones}", entry['acciones_usr']);
                 html_tr = html_tr.replace("{precio_compra}",  entry['precio_compra'] );
-                //html_tr = html_tr.replace("{precio_actual}", entry['precio_accion_usr']);
+                html_tr = html_tr.replace("{precio_actual}", entry['precio_accion_usr']);
                 $("#portafolio").append(html_tr);
             });
 
