@@ -11,7 +11,7 @@
 		<form>
 			<div class="form-group row">
 				<label class="control-label">RFC:</label>
-				<input type="text" maxlength="13" id="usuario" name="usuario" class="form-control" placeholder="RFC" required autofocus>
+				<input type="text" maxlength="10" id="usuario" name="usuario" class="form-control" placeholder="RFC" required autofocus>
 			</div>
 
 			<div class="form-group row">
